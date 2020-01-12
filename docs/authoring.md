@@ -40,8 +40,7 @@ After running `azdev extension create`, your extension should be installed in **
 |   |-- azext_metadata.json
 |   |-- commands.py
 |   |-- custom.py
-|   |-- <font color=red>profiles.py</font>
-<font color="#dd0000">浅红色文字：</font><br />
+|   |-- profiles.py
 |   |-- tests
 |       |-- __init__.py
 |       |-- latest
