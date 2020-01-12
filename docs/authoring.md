@@ -119,6 +119,62 @@ See [Extension Metadata](metadata.md) for more information.
 
 - When you run `az --version` it will list your normal extensions directory as well as any directories being used to find developer extensions. Developer extensions will appear in the output with a path next to the version number.
 
+Example:
+```
+(e-env) E:\Projects\AzureCLI>az --version
+azure-cli                         2.0.79
+
+command-modules-nspkg              2.0.3
+core                              2.0.79
+nspkg                              3.0.4
+telemetry                          1.0.4
+testsdk                            0.2.4
+
+Extensions:
+alias                              0.5.2
+db-up                             0.1.13
+interactive                        0.4.3
+storage-ors-preview                0.1.0 (dev) E:\Projects\AzureCLI\azure-cli-extensions\src\storage-ors-preview
+storage-preview                   0.2.10 (dev) E:\Projects\AzureCLI\azure-cli-extensions\src\storage-preview
+
+Python location 'E:\Projects\AzureCLI\azure-cli-extensions\e-env\Scripts\python.exe'
+Extensions directory 'C:\Users\zuh\.azure\cliextensions'
+Development extension sources:
+    E:\Projects\AzureCLI\azure-cli-extensions
+```
+
+- `az extension list`
+
+Example:
+```
+[
+  {
+    "extensionType": "whl",
+    "name": "alias",
+    "version": "0.5.2"
+  },
+  {
+    "extensionType": "whl",
+    "name": "db-up",
+    "version": "0.1.13"
+  },
+  {
+    "extensionType": "whl",
+    "name": "interactive",
+    "version": "0.4.3"
+  },
+  {
+    "extensionType": "dev",
+    "name": "storage-ors-preview",
+    "version": "0.1.0"
+  },
+  {
+    "extensionType": "dev",
+    "name": "storage-preview",
+    "version": "0.2.10"
+  }
+]
+```
 ### Test your extension on both Python 2 & 3
 
 - The CLI supports both Python 2 & 3 so verify that your extension does the same.
