@@ -142,11 +142,19 @@ class StorageCommandsLoader(AzCommandsLoader):
                                                     command_group_cls=StorageCommandGroup,
                                                     argument_context_cls=StorageArgumentContext)
 ```
-3. Register again in tests if you want to use these resource types
+3. Register again for tests against target profile if you want to use these resource types
+- latest\__init__.py
 ```Python
 from azure.cli.core.profiles import register_resource_type
 from ...profiles import CUSTOM_MGMT_STORAGE
 register_resource_type('latest', CUSTOM_MGMT_STORAGE, '2018-03-01-preview')
+```
+- latest\test_xx.py
+```Python
+@api_version_constraint(CUSTOM_MGMT_STORAGE, min_api='2017-06-01')
+@ResourceGroupPreparer(location='southcentralus')
+def test_create_storage_account_with_assigned_identity(self, resource_group):\
+  ...
 ```
 
 ### Building
