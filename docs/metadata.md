@@ -84,5 +84,5 @@ Example: `"azext.isPreview": true`
 Notes:
 1. The following message will be shown up when users run the commands in your extension with `"azext.isPreview": true` :
 ![avatar](https://github.com/Juliehzl/azure-cli-extensions/blob/authoring/docs/assets/extensionpreview.png)
-<img src="https://github.com/Juliehzl/azure-cli-extensions/blob/authoring/docs/assets/extensionpreview.png" width = "800" height = "60" alt="preview" 
+<img src="https://github.com/Juliehzl/azure-cli-extensions/blob/authoring/docs/assets/extensionpreview.png" width = "800" height = "80" alt="preview" 
 align=center>
