@@ -27,8 +27,33 @@ azdev extension create  widget --local-sdk <PATH TO SDK ZIP> --operation-name Wi
 
 The fields `--operation-name`, `--client-name` and `--sdk-property` will come from a review of your Python SDK.
 
-After running `azdev extension create`, your extension should be installed in dev mode and you should be set to begin developing.
+After running `azdev extension create`, your extension should be installed in **dev mode** and you should be set to begin developing.
 
+```
+.
+|-- azext_<EXTENSION_NAME>
+|   |-- __init__.py
+|   |-- _client_factory.py
+|   |-- _help.py
+|   |-- _params.py
+|   |-- _validators.py
+|   |-- azext_metadata.json
+|   |-- commands.py
+|   |-- custom.py
+|   |-- <font color=red>profiles.py</font>
+<font color="#dd0000">浅红色文字：</font><br />
+|   |-- tests
+|       |-- __init__.py
+|       |-- latest
+|           |-- __init__.py
+|           |-- test_xxx.py
+|           |-- recordings
+|               `-- test_xxx.yml
+`-- HISTORY.rst
+|-- README.rst/README.md
+`-- setup.cfg
+`-- setup.py
+```
 ### Validate
 
 Periodically run the following to ensure your extension will pass CI:
