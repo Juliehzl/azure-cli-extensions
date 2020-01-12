@@ -40,7 +40,7 @@ After running `azdev extension create`, your extension should be installed in **
 |   |-- azext_metadata.json
 |   |-- commands.py
 |   |-- custom.py
-|   |-- profiles.py
+|   |-- profiles.py (Optional)
 |   |-- tests
 |       |-- __init__.py
 |       |-- latest
@@ -48,11 +48,23 @@ After running `azdev extension create`, your extension should be installed in **
 |           |-- test_xxx.py
 |           |-- recordings
 |               `-- test_xxx.yml
+|   |-- vendored_sdks
+|       |-- __init__.py
+|       |-- <SOURCE_SDK>
 `-- HISTORY.rst
 |-- README.rst/README.md
 `-- setup.cfg
 `-- setup.py
 ```
+Important file/folder:
+1. [azext_matadata.json](metadata.md)
+2. vendored_sdks/__init__.py to package folder in your extension wheel.
+```Python
+__import__('pkg_resources').declare_namespace(__name__)
+```
+3. README 
+  - Follow [Extension Summary Guidelines](extension_summary_guidelines.md)
+
 ### Validate
 
 Periodically run the following to ensure your extension will pass CI:
@@ -65,15 +77,77 @@ Address comments as appropriate and consult the CLI team if something is unclear
 
 ### Publish
 
-Once your extension is ready, you need to build and publish the WHL file to a public location and optionally advertise the new extension in the repo's index.json file for discoverability. For public extensions that are published to a storage account, the following command will accomplish all of this.
+Once your extension is ready, you need to build and publish the WHL file to a public location and optionally advertise the new extension in the repo's index.json file for discoverability. 
+
+For public extensions that are published to a storage account, the following command will accomplish all of this.
 
 `azdev extension publish <NAME> --update-index [--storage-account NAME --storage-container NAME --storage-subscription GUID]`
 
+Notes: 
+1. This command will complete the following tasks:
+    - Build the whl file for extension.
+	  - Upload the whl file to azure-cli-extension blob.
+	  - Update index.json with new download url, file name and sha256Digest. 
+
 The storage fields can be stored in your config file or as environment variables so you need not supply them every time. Once the publish command has been run (you must be logged in to the Azure CLI for it to succeed), you can open a PR that will contain your code changes and the index update. This used to be done in two steps.
+
+In summary, after the code change, please remember the following steps when you publish an extension, particularly for existing extensions.
+
+Take storage-preview for example:
+
+1. Update the version number
+
+https://github.com/Azure/azure-cli-extensions/blob/master/src/storage-preview/setup.py#L11
+	
+2. Update the HISTORY file
+	
+https://github.com/Azure/azure-cli-extensions/blob/master/src/storage-preview/HISTORY.rst
+	
+3. Run `azdev extension publish [extension-name]  --storage-account azurecliprod --update-index --storage-container cli-extensions` with --storage-subscription if required
+	
+Notes:
+ The older version of extension may be removed from [index.json](https://github.com/Azure/azure-cli-extensions/blob/master/src/index.json).
 
 ## Uncommon Flows
 
 These are operations you may never need to do, or only do occasionally.
+
+### Register Custom Resource Types
+1. Define CustomResourceType in profile.py
+```Python
+from azure.cli.core.profiles import CustomResourceType
+
+CUSTOM_DATA_STORAGE = CustomResourceType('azext_storage_preview.vendored_sdks.azure_storage', None)
+CUSTOM_DATA_STORAGE_ADLS = CustomResourceType('azext_storage_preview.vendored_sdks.azure_adls_storage_preview', None)
+CUSTOM_MGMT_STORAGE = CustomResourceType('azext_storage_preview.vendored_sdks.azure_mgmt_storage',
+                                         'StorageManagementClient')
+CUSTOM_MGMT_PREVIEW_STORAGE = CustomResourceType('azext_storage_preview.vendored_sdks.azure_mgmt_preview_storage',
+                                                 'StorageManagementClient')
+```
+2. Register in __init__.py
+```Python
+class StorageCommandsLoader(AzCommandsLoader):
+    def __init__(self, cli_ctx=None):
+        from azure.cli.core.commands import CliCommandType
+
+        register_resource_type('latest', CUSTOM_DATA_STORAGE, '2018-03-28')
+        register_resource_type('latest', CUSTOM_DATA_STORAGE_ADLS, '2019-02-02-preview')
+        register_resource_type('latest', CUSTOM_MGMT_STORAGE, '2018-07-01')
+        register_resource_type('latest', CUSTOM_MGMT_PREVIEW_STORAGE, '2018-03-01-preview')
+        storage_custom = CliCommandType(operations_tmpl='azext_storage_preview.custom#{}')
+
+        super(StorageCommandsLoader, self).__init__(cli_ctx=cli_ctx,
+                                                    resource_type=CUSTOM_DATA_STORAGE,
+                                                    custom_command_type=storage_custom,
+                                                    command_group_cls=StorageCommandGroup,
+                                                    argument_context_cls=StorageArgumentContext)
+```
+3. Register again in tests if you want to use these resource types
+```Python
+from azure.cli.core.profiles import register_resource_type
+from ...profiles import CUSTOM_MGMT_STORAGE
+register_resource_type('latest', CUSTOM_MGMT_STORAGE, '2018-03-01-preview')
+```
 
 ### Building
 
