@@ -56,8 +56,7 @@ Note:
 1. 2.0.67 is a widely used minCliCoreVersion number, because there are some breaking changes and new features invloved in this version.
 e.g. new flag like `is_preview`
 2. When CLI core version is lower than required version of your installed extension, the following error will be thrown:
-![avatar](https://github.com/Juliehzl/azure-cli-extensions/blob/authoring/docs/assets/extensionversion.png)
-<img src="https://github.com/Juliehzl/azure-cli-extensions/blob/authoring/docs/assets/extensionversion.png" width = "820" height = "74" alt="preview" 
+<img src="https://github.com/Juliehzl/azure-cli-extensions/blob/authoring/docs/assets/extensionversion.png" width = "820" height = "74" alt="version" 
 align=center>
 3. When you want to install an extension, you only can install the available extension based on your installed cli core version.
 
@@ -84,6 +83,5 @@ Example: `"azext.isPreview": true`
 
 Notes:
 1. The following message will be shown up when users run the commands in your extension with `"azext.isPreview": true` :
-![avatar](https://github.com/Juliehzl/azure-cli-extensions/blob/authoring/docs/assets/extensionpreview.png)
 <img src="https://github.com/Juliehzl/azure-cli-extensions/blob/authoring/docs/assets/extensionpreview.png" width = "820" height = "67" alt="preview" 
 align=center>

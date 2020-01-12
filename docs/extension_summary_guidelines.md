@@ -1,5 +1,31 @@
 # Extension Summary Guidelines
 
+Usage:
+1. setup.py
+```Python
+setup(
+    name='storage-preview',
+    version=VERSION,
+    description='Provides a preview for upcoming storage features.',
+    long_description='An Azure CLI Extension for storage preview features. This will replace the full storage module.',
+    license='MIT',
+    author='Microsoft Corporation',
+    author_email='azpycli@microsoft.com',
+    url='https://github.com/Azure/azure-cli-extensions/tree/master/src/storage-preview',
+    classifiers=CLASSIFIERS,
+    package_data={
+        'azext_storage_preview': ['azext_metadata.json', 'azcopy/*/*']
+    },
+    packages=find_packages(exclude=["tests"]),
+    install_requires=DEPENDENCIES
+)
+```
+2. README
+- How to use
+- Included Features
+
+e.g. https://github.com/Azure/azure-cli-extensions/tree/master/src/storage-preview
+
 Extension summaries are required to follow these rules in order to be published
 on the documentation site:
  
