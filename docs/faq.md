@@ -24,9 +24,9 @@ FAQ
 
 ### How do I move from an extension to a command module?
 
-- [Extension Supression](https://github.com/Azure/azure-cli/blob/dev/doc/authoring_command_modules/authoring_commands.md#extension-suppression)
 - Move your `__init__.py` file (and other files) from `azext_*` to `azure.cli.command_modules.MODNAME`.
 - Add a dependency on `azure-cli-core` to your `setup.py`.
 - Rename your package to start with `azure-cli-*`.
 - If you rely on an Azure autorest SDK, release the SDK at [azure-sdk-for-python](https://github.com/Azure/azure-sdk-for-python) and add it as a dependency.
 - Create a PR to [Azure/azure-cli](https://github.com/Azure/azure-cli/).
+- [Extension Supression](https://github.com/Azure/azure-cli/blob/dev/doc/authoring_command_modules/authoring_commands.md#extension-suppression)
