@@ -29,4 +29,4 @@ FAQ
 - Rename your package to start with `azure-cli-*`.
 - If you rely on an Azure autorest SDK, release the SDK at [azure-sdk-for-python](https://github.com/Azure/azure-sdk-for-python) and add it as a dependency.
 - Create a PR to [Azure/azure-cli](https://github.com/Azure/azure-cli/).
-- [Extension Supression](https://github.com/Azure/azure-cli/blob/dev/doc/authoring_command_modules/authoring_commands.md#extension-suppression)
+- [Extension Supression](https://github.com/Juliehzl/azure-cli/blob/authoring/doc/authoring_command_modules/authoring_commands.md#extension-suppression)
