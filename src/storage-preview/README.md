@@ -155,31 +155,30 @@ Note: Please make sure storage-preview version >= 2.0.9 with azure cli >= 2.0.67
 ##### Mapping from ADLS Gen1 to ADLS Gen2
 You can find the command mapping from ADLS Gen1 to ADLS Gen2 as follows:
 
-|                      ADLS Gen1                 |                         ADLS Gen2                    |
-|:----------------------------------------------:|:----------------------------------------------------:|
-| az dls fs                                      | az storage blob directory                            |
-| az dls fs access                               | az storage blob directory access                     |
-| az dls fs access remove-all                    | Currently Not Supported                              |
-| az dls fs access remove-entry                  | Currently Not Supported                              |
-| az dls fs access set                           | az storage blob directory access set                 |
-| az dls fs access set-entry                     | Currently Not Supported                              |
-| az dls fs access set-owner                     | az storage blob directory access update              |  
-| az dls fs access set-permission                | az storage blob directory access update              |
-| az dls fs access show                          | az storage blob directory access show                |
-| az dls fs append                               | Currently Not Supported                              |
-| az dls fs create                               | az storage blob directory create                     |
-| az dls fs delete                               | az storage blob directory delete                     |
-| az dls fs download                             | az storage blob directory download                   | 
-| az dls fs join                                 | Currently Not Supported                              |
-| az dls fs list                                 | az storage blob directory list                       | 
-| az dls fs move                                 | az storage blob directory move                       |  
-| az dls fs preview                              | Currently Not Supported                              |
-| az dls fs set-expiry                           | Currently Not Supported                              |
-| az dls fs show                                 | az storage blob directory show                       | 
-| az dls fs test                                 | az storage blob directory exists                     | 
-| az dls fs upload                               | az storage blob directory upload                     |
-| NO                                             | az storage blob directory metadata show              |
-| NO                                             | az storage blob directory metadata update            |
+|                      ADLS Gen1                 |                         ADLS Gen2                    |                           |  
+|:----------------------------------------------:|:----------------------------------------------------:|:-------------------------:|
+| az dls fs                                      | az storage blob directory                            |                           |
+| az dls fs access                               | az storage blob directory access                     |                           |
+| az dls fs access remove-all                    | Currently Not Supported                              |                           |
+| az dls fs access remove-entry                  | Currently Not Supported                              |                           |
+| az dls fs access set                           | az storage blob directory access set                 |                           |
+| az dls fs access set-owner                     | az storage blob directory access update              |                           | 
+| az dls fs access set-permission                | az storage blob directory access update              |                           |
+| az dls fs access show                          | az storage blob directory access show                |                           |
+| az dls fs append                               | Currently Not Supported                              |                           |
+| az dls fs create                               | az storage blob directory create                     |                           |
+| az dls fs delete                               | az storage blob directory delete                     |                           |
+| az dls fs download                             | az storage blob directory download                   |                           |
+| az dls fs join                                 | Currently Not Supported                              |                           |
+| az dls fs list                                 | az storage blob directory list                       |                           |
+| az dls fs move                                 | az storage blob directory move                       |                           |
+| az dls fs preview                              | Currently Not Supported                              |                           |
+| az dls fs set-expiry                           | Currently Not Supported                              |                           |
+| az dls fs show                                 | az storage blob directory show                       |                           |
+| az dls fs test                                 | az storage blob directory exists                     |                           |
+| az dls fs upload                               | az storage blob directory upload                     |                           |
+| NO                                             | az storage blob directory metadata show              |                           |
+| NO                                             | az storage blob directory metadata update            |                           |
 
 
 ##### New commands for existing blob command group
