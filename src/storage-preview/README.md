@@ -155,7 +155,7 @@ Note: Please make sure storage-preview version >= 2.0.9 with azure cli >= 2.0.67
 ##### Mapping from ADLS Gen1 to ADLS Gen2
 You can find the command mapping from ADLS Gen1 to ADLS Gen2 as follows:
 
-|                      ADLS Gen1                 |                         ADLS Gen2                    |                           |  
+|                      ADLS Gen1                 |                ADLS Gen2 in track1                   |      ADLS Gen2 in track2  |  
 |:----------------------------------------------:|:----------------------------------------------------:|:-------------------------:|
 | az dls fs                                      | az storage blob directory                            |                           |
 | az dls fs access                               | az storage blob directory access                     |                           |
